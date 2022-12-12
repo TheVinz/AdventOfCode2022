@@ -80,6 +80,10 @@ with open(input_filename, 'r') as f:
         parser.parse(line)
     
     monkeys = parser.getMonkeys()
+    mod = [m.test for m in monkeys.values()]
+    MOD = 1
+    for m in mod:
+        MOD *= m
 
     for _ in range(10000):
         for i in range(len(monkeys)):
