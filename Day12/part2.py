@@ -60,7 +60,6 @@ with open(input_filename, 'r') as f:
 
     for s in ss:
         res = walk(s, e, data)
-        print('{}/{}'.format(i, len(ss)))
         i+=1
         if res is not None:
             if len(res)-1 < r:
