@@ -132,26 +132,19 @@ def readInput(f):
 def quelityLevel(state: State, idx):
     idx = idx+1
     res = 0
-    timeStats = [0]*(TIME+1)
-
     queue = [state]
 
     while len(queue)>0:
         current = queue.pop()
-        timeStats[current.time]+=1
         if current.isTimeout():
             if current.resources[Resources.GEODE] > res:
                 res = current.resources[Resources.GEODE]
-                print("New best res for blueprint {}: {}".format(idx, res))
         else:
             nextSteps = current.getDistances()
             for resource, distance in nextSteps.items():
                 ns = current.step(distance+1).build(resource)
                 if  ns.maxProduction()>res:
                     queue.append(ns)
-
-    print("Blueprint {} solved with {} geodes".format(idx, res))
-    print(timeStats)
 
     return res*idx
 
